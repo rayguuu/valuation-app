@@ -831,7 +831,7 @@ if d["analyst_target"]:
     st.caption(f"Analyst consensus target: ${d['analyst_target']:.2f}  ({upside_analyst:+.1f}% from current)")
 
 if d["description"]:
-    with st.expander("Business description"):
+    if st.toggle("Show Business description", value=False):
         st.write(d["description"][:900] + "...")
 
 if fcf_note:
