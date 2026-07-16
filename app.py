@@ -714,11 +714,13 @@ with st.sidebar:
 
     st.divider()
     st.markdown("### Bull / Bear Scenarios")
-    with st.expander("Bull Case"):
+    if st.expander("Bull Case", value=False, key="toggle_bull"):
+        if True:
         bull_g1 = st.number_input("Bull Growth Yr 1 (%)", value=g1_pct+5, step=0.5, format="%.1f", key="bull_g1")
         bull_tg = st.number_input("Bull Terminal Growth (%)", value=tg_pct+0.5, step=0.1, format="%.1f", key="bull_tg")
         bull_wacc_adj = st.number_input("Bull WACC Adj (pp)", value=-0.5, step=0.1, format="%.1f", key="bull_wacc")
-    with st.expander("Bear Case"):
+    if st.expander("Bear Case", value=False, key="toggle_bear"):
+        if True:
         bear_g1 = st.number_input("Bear Growth Yr 1 (%)", value=max(g1_pct-5,0), step=0.5, format="%.1f", key="bear_g1")
         bear_tg = st.number_input("Bear Terminal Growth (%)", value=max(tg_pct-0.5,0.5), step=0.1, format="%.1f", key="bear_tg")
         bear_wacc_adj = st.number_input("Bear WACC Adj (pp)", value=1.0, step=0.1, format="%.1f", key="bear_wacc")
@@ -1104,7 +1106,8 @@ with tab1:
             )
             st.plotly_chart(fig_all, use_container_width=True)
 
-    with st.expander("WACC Decomposition"):
+    if st.expander("Show WACC Decomposition", value=False):
+        if True:
         wd = pd.DataFrame({
             "Component":    ["Cost of Equity","After-tax Cost of Debt","Blended WACC"],
             "Rate":         [fmt_pct(cost_eq), fmt_pct(cost_dbt*(1-tax_rate)), fmt_pct(wacc)],
